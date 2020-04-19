@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+"
+>
+    <!--<context:component-scan base-package="com.tutorials"/>-->
+    <!--第一种注入方式使用xml文件配置属性ref注入或者使用构造传参注入, 建议使用属性注入-->
+    <bean id="textEditor" class="com.tutorials.IOCDemoAnno1.TextEditor">
+        <!--如果属性域中相同的class类型有多个，构造时会抛出模糊异常-->
+        <!--<constructor-arg ref="spellChecker1"/>-->
+        <!--<constructor-arg type="com.tutorials.IOCDemoAnno1.SpellChecker" ref="spellChecker"/>-->
+
+        <!--属性ref注入 -->
+        <property name="spellChecker" ref="spellChecker"/>
+
+        <!--属性 inner bean 注入 -->
+        <property name="spellChecker5">
+            <bean id="sp5" class="com.tutorials.IOCDemoAnno1.SpellChecker">
+                <property name="message" value="sp 5..."/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="spellChecker" class="com.tutorials.IOCDemoAnno1.SpellChecker">
+        <property name="message" value="spell checker"/>
+    </bean>
+
+    <bean id="spellChecker1" class="com.tutorials.IOCDemoAnno1.SpellChecker">
+        <property name="message" value="check 1,"/>
+    </bean>
+
+</beans>

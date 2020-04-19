@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+          <!--init-method="init" destroy-method="destroyMethod"-->
+    <aop:aspectj-autoproxy/>
+
+    <bean id="helloWorld" class="com.tutorials.IOCDemo1.HelloWorld"
+    >
+        <property name="message" value="hello sean java!"/>
+        <property name="message1" value="hello this message 1"/>
+    </bean>
+
+    <!--<bean class="com.tutorials.MiscDemo.InitBean"/>-->
+
+    <bean name="helloMessage1" class="com.tutorials.IOCDemo1.HelloMessage1" parent="helloWorld">
+        <property name="message" value="hm1 message"/>
+        <property name="message2" value="hm1 message 2"/>
+    </bean>
+
+    <bean id="textEditor" class="com.tutorials.IOCDemoAnno1.TextEditor"
+          p:message="text editor, ok!">
+        <!--<constructor-arg ref="spellChecker"/>-->
+        <!--<constructor-arg type="com.tutorials.IOCDemoAnno1.SpellChecker" ref="spellChecker"/>-->
+        <!--<property name="spellChecker" ref="spellChecker"/>-->
+    </bean>
+
+    <bean id="spellChecker" class="com.tutorials.IOCDemoAnno1.SpellChecker"
+    p:message="i am spellCheck"/>
+
+    <bean name="spellChecker1" class="com.tutorials.IOCDemoAnno1.SpellChecker"
+    p:message="i am sp1, xi xi"/>
+
+    <!--<context:annotation-config/>-->
+
+    <bean id="student" class="com.tutorials.IOCDemo1.Student">
+        <property name="age" value="11"/>
+        <property name="name" value="Sean"/>
+    </bean>
+
+    <bean id="stringBean" class="java.lang.String">
+        <constructor-arg value="kkkkkkk"/>
+    </bean>
+
+    <bean id="cStartedHandler" class="com.tutorials.MiscDemo.CStartEventHandler"/>
+    <bean name="cStoppedHandler" class="com.tutorials.MiscDemo.CStopEventHandler"/>
+
+    <!--<bean id="ce" class="com.tutorials.MiscDemo.CustomEvent"/>-->
+    <bean id="ceh" class="com.tutorials.MiscDemo.CustomEventHandler"/>
+    <bean id="cep" class="com.tutorials.MiscDemo.CustomEventPublisher"/>
+
+    <!--<aop:config>-->
+        <!--<aop:aspect id="myAspect" ref="logging">-->
+            <!--&lt;!&ndash;<aop:pointcut id="BussinessService" expression="execution(* com.tutorials.myapp.*.*(..))"/>&ndash;&gt;-->
+            <!--<aop:pointcut id="businessService" expression="execution(* com.tutorials.IOCDemo1.Student.getName(..))"/>-->
+            <!--<aop:before method="beforeAdvice" pointcut-ref="businessService"/>-->
+            <!--<aop:after method="afterAdvice" pointcut-ref="businessService"/>-->
+            <!--<aop:after-returning method="afterReturningAdvice" pointcut-ref="businessService" returning="retVal"/>-->
+            <!--<aop:after-throwing method="afterThrowingAdvice" pointcut-ref="businessService" throwing="ex"/>-->
+            <!--&lt;!&ndash;<aop:around method="aroundAdvice" pointcut-ref="businessService" />&ndash;&gt;-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+    <!---->
+    <bean id="logging" class="com.tutorials.AOPDemo1.Logging"/>
+
+</beans>

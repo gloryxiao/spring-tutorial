@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+
+    <!--spring容器默认不会开启注释的注入模式，需要在xml文件中开启-->
+    <context:annotation-config/>
+
+    <bean id="book" class="com.tutorials.IOCDemoAnno1.Book">
+        <property name="name" value="西游记"/>
+    </bean>
+
+    <!--spring容器默认不会开启包扫描，需要在xml中配值-->
+    <context:component-scan base-package="com.tutorials.IOCDemoAnno1"/>
+</beans>
